@@ -1,10 +1,10 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-    <version>1.5.5</version>
+    <version>1.5.6</version>
     <modelVersion>4.0.0</modelVersion>
     <groupId>it.forgottenworld</groupId>
-    <artifactId>FWTradingCards</artifactId>
+    <artifactId>fwtradingCards</artifactId>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
