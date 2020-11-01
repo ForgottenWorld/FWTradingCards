@@ -4,7 +4,7 @@
     <version>1.5.6</version>
     <modelVersion>4.0.0</modelVersion>
     <groupId>it.forgottenworld</groupId>
-    <artifactId>fwtradingCards</artifactId>
+    <artifactId>fwtradingcards</artifactId>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
