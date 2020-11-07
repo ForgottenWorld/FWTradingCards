@@ -10,36 +10,33 @@ object Rarities : Map<String, Rarity> {
 
     fun load() {
         with(Config.PLUGIN) {
-            map = getConfigurationSection("Rarities")?.getKeys(false)?.map {
-                Pair(it, Rarity(
+            map = getConfigurationSection("Rarities")?.getKeys(false)?.associate {
+                (it to Rarity(
                         it,
                         getString("Rarities.$it.Colour") ?: "&7",
                         Chances.getRarityChances(it),
                         mutableMapOf()
                 ).apply { putAll(getCardsForRarityFromConfig(this)) })
-            }?.toMap() ?: mapOf()
+            } ?: mapOf()
         }
     }
 
     private fun getCardsForRarityFromConfig(rarity: Rarity) =
             Config.CARDS.run {
-                getConfigurationSection("Cards.${rarity.name}")!!.getKeys(false).map {
-                    Pair(
+                getConfigurationSection("Cards.${rarity.name}")?.getKeys(false)?.associate {
+                    it to Card(
                             it,
-                            Card(
-                                    it,
-                                    rarity,
-                                    getBoolean("Cards.${rarity.name}.$it.Has-Shiny-Version", false),
-                                    getString("Cards.${rarity.name}.$it.Series")!!,
-                                    getString("Cards.${rarity.name}.$it.About", "None")!!,
-                                    getString("Cards.${rarity.name}.$it.Type")!!,
-                                    getString("Cards.${rarity.name}.$it.Info")!!,
-                                    Config.CARDS.getDouble("Cards.${rarity.name}.$it.Buy-Price", 0.0),
-                                    getString("Cards.${rarity.name}.$it.Image", "") ?: "",
-                                    getInt("Cards.${rarity.name}.$it.mapId", -1)
-                            )
+                            rarity,
+                            getBoolean("Cards.${rarity.name}.$it.Has-Shiny-Version", false),
+                            getString("Cards.${rarity.name}.$it.Series")!!,
+                            getString("Cards.${rarity.name}.$it.About", "None")!!,
+                            getString("Cards.${rarity.name}.$it.Type")!!,
+                            getString("Cards.${rarity.name}.$it.Info")!!,
+                            Config.CARDS.getDouble("Cards.${rarity.name}.$it.Buy-Price", 0.0),
+                            getString("Cards.${rarity.name}.$it.Image", "") ?: "",
+                            getInt("Cards.${rarity.name}.$it.mapId", -1)
                     )
-                }.toMap()
+                } ?: mapOf()
             }
 
     override val entries: Set<Map.Entry<String, Rarity>>
